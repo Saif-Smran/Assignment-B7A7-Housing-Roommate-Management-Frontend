@@ -115,14 +115,13 @@ export function useOwnerFullDashboardQuery() {
         propertyIds,
         token || undefined,
       );
-      const [applications, viewings, maintenance, earningsRes] = await Promise.all(
-        [
+      const [applications, viewings, maintenance, earningsRes] =
+        await Promise.all([
           applicationsPromise,
           getViewingRequests(token || undefined),
           getMaintenanceRequests(token || undefined),
           getOwnerEarnings(token || undefined),
-        ],
-      );
+        ]);
 
       const ownerPayments = earningsRes.data?.payments ?? [];
 

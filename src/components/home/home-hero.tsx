@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { HomeHeroIsometric } from "@/components/home/home-hero-isometric";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -44,76 +45,78 @@ export function HomeHero() {
   };
 
   return (
-    <section className="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-28 bg-gradient-to-b from-indigo-50/50 via-background to-background dark:from-indigo-950/20">
-      {/* Decorative Glow elements */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-indigo-500/15 to-purple-500/15 blur-[120px] rounded-full pointer-events-none" />
+    <section className="relative overflow-hidden min-h-[60vh] lg:h-[75vh] lg:min-h-[600px] lg:max-h-[760px] flex items-center justify-center bg-gradient-to-b from-indigo-50/50 via-background to-background dark:from-indigo-950/20 py-8 lg:py-0">
+      {/* Decorative Glow Elements */}
+      <div className="absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] bg-gradient-to-tr from-indigo-500/15 to-purple-500/15 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-10 right-1/4 w-[400px] h-[300px] bg-gradient-to-bl from-pink-500/10 to-indigo-500/10 blur-[100px] rounded-full pointer-events-none" />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center text-center space-y-6 max-w-4xl mx-auto">
-          {/* Top Pill Announcement */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3.5 py-1 text-xs font-semibold text-indigo-600 dark:text-indigo-400 backdrop-blur-md shadow-sm">
-            <Sparkles className="h-3.5 w-3.5" />
-            <span>Next-Gen Housing & Roommate Matching Platform</span>
-            <Badge
-              variant="accent"
-              className="text-[9px] uppercase px-1.5 py-0"
-            >
-              Live API
-            </Badge>
-          </div>
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Left Column: Headlines & High-Velocity Search */}
+          <div className="lg:col-span-7 flex flex-col space-y-4 sm:space-y-5 text-left">
+            {/* Top Pill Announcement */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-600 dark:text-indigo-400 backdrop-blur-md shadow-sm w-fit">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span>Next-Gen Housing & Roommate Matching</span>
+              <Badge
+                variant="accent"
+                className="text-[9px] uppercase px-1.5 py-0"
+              >
+                Live API
+              </Badge>
+            </div>
 
-          {/* Main Headline */}
-          <h1 className="font-heading text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl text-foreground leading-[1.15]">
-            Find Your Ideal Room &{" "}
-            <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Compatible Roommates
-            </span>
-          </h1>
+            {/* Main Headline */}
+            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground leading-[1.12]">
+              Find Your Ideal Room &{" "}
+              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Compatible Roommates
+              </span>
+            </h1>
 
-          {/* Subtitle */}
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Search verified rental apartments, master bedrooms, and shared flats
-            across Dhaka, Chittagong, and major cities with instant Stripe
-            checkout & maintenance tracking.
-          </p>
+            {/* Subtitle */}
+            <p className="text-sm sm:text-base text-muted-foreground max-w-xl leading-relaxed">
+              Search verified rental apartments, master bedrooms, and shared
+              flats across Dhaka and top cities with instant Stripe checkout &
+              maintenance tracking.
+            </p>
 
-          {/* Hero Interactive Search Container */}
-          <div className="w-full max-w-3xl mt-4">
+            {/* Search Container Form */}
             <form
               onSubmit={handleSearch}
-              className="p-3 sm:p-4 rounded-3xl border border-border/70 bg-background/80 backdrop-blur-2xl shadow-2xl shadow-indigo-500/10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-left"
+              className="p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl border border-border/70 bg-card/80 backdrop-blur-2xl shadow-xl shadow-indigo-500/5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 text-left"
             >
               {/* Field 1: Keyword */}
-              <div className="flex flex-col gap-1 px-2 py-1 border-b sm:border-b-0 sm:border-r border-border/50">
+              <div className="flex flex-col gap-0.5 px-2 py-1 border-b sm:border-b-0 sm:border-r border-border/50">
                 <label
-                  htmlFor="keyword-input"
-                  className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1"
+                  htmlFor="hero-keyword"
+                  className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1"
                 >
-                  <Search className="h-3 w-3 text-indigo-500" /> Keyword
+                  <Search className="h-2.5 w-2.5 text-indigo-500" /> Keyword
                 </label>
                 <Input
-                  id="keyword-input"
+                  id="hero-keyword"
                   type="text"
-                  placeholder="e.g. Sunset, Dhanmondi"
+                  placeholder="e.g. Dhanmondi"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="h-8 border-none bg-transparent p-0 text-xs focus-visible:ring-0 placeholder:text-muted-foreground/60 shadow-none"
+                  className="h-7 border-none bg-transparent p-0 text-xs focus-visible:ring-0 placeholder:text-muted-foreground/60 shadow-none"
                 />
               </div>
 
               {/* Field 2: City */}
-              <div className="flex flex-col gap-1 px-2 py-1 border-b sm:border-b-0 md:border-r border-border/50">
+              <div className="flex flex-col gap-0.5 px-2 py-1 border-b sm:border-b-0 sm:border-r border-border/50">
                 <label
-                  htmlFor="city-select"
-                  className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1"
+                  htmlFor="hero-city"
+                  className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1"
                 >
-                  <MapPin className="h-3 w-3 text-indigo-500" /> City
+                  <MapPin className="h-2.5 w-2.5 text-indigo-500" /> City
                 </label>
                 <select
-                  id="city-select"
+                  id="hero-city"
                   value={selectedCity}
                   onChange={(e) => setSelectedCity(e.target.value)}
-                  className="h-8 bg-transparent text-xs text-foreground focus:outline-none cursor-pointer"
+                  className="h-7 bg-transparent text-xs text-foreground focus:outline-none cursor-pointer"
                 >
                   <option value="" className="bg-background text-foreground">
                     All Cities
@@ -146,18 +149,18 @@ export function HomeHero() {
               </div>
 
               {/* Field 3: Property Type */}
-              <div className="flex flex-col gap-1 px-2 py-1 border-b sm:border-b-0 md:border-r border-border/50">
+              <div className="flex flex-col gap-0.5 px-2 py-1 border-b sm:border-b-0 sm:border-r border-border/50">
                 <label
-                  htmlFor="type-select"
-                  className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1"
+                  htmlFor="hero-type"
+                  className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1"
                 >
-                  <Building className="h-3 w-3 text-indigo-500" /> Type
+                  <Building className="h-2.5 w-2.5 text-indigo-500" /> Type
                 </label>
                 <select
-                  id="type-select"
+                  id="hero-type"
                   value={selectedType}
                   onChange={(e) => setSelectedType(e.target.value)}
-                  className="h-8 bg-transparent text-xs text-foreground focus:outline-none cursor-pointer"
+                  className="h-7 bg-transparent text-xs text-foreground focus:outline-none cursor-pointer"
                 >
                   <option value="" className="bg-background text-foreground">
                     All Types
@@ -184,18 +187,18 @@ export function HomeHero() {
               </div>
 
               {/* Field 4: Rent Budget */}
-              <div className="flex flex-col gap-1 px-2 py-1 border-b md:border-b-0 md:border-r border-border/50">
+              <div className="flex flex-col gap-0.5 px-2 py-1 border-b sm:border-b-0 sm:border-r border-border/50">
                 <label
-                  htmlFor="budget-select"
-                  className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1"
+                  htmlFor="hero-budget"
+                  className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1"
                 >
-                  <Banknote className="h-3 w-3 text-indigo-500" /> Rent Budget
+                  <Banknote className="h-2.5 w-2.5 text-indigo-500" /> Budget
                 </label>
                 <select
-                  id="budget-select"
+                  id="hero-budget"
                   value={rentBudget}
                   onChange={(e) => setRentBudget(e.target.value)}
-                  className="h-8 bg-transparent text-xs text-foreground focus:outline-none cursor-pointer"
+                  className="h-7 bg-transparent text-xs text-foreground focus:outline-none cursor-pointer"
                 >
                   <option value="" className="bg-background text-foreground">
                     Any Budget
@@ -204,45 +207,47 @@ export function HomeHero() {
                     value="under10k"
                     className="bg-background text-foreground"
                   >
-                    Under ৳10,000
+                    &lt; ৳10k
                   </option>
                   <option
                     value="10k-20k"
                     className="bg-background text-foreground"
                   >
-                    ৳10,000 - ৳20,000
+                    ৳10k - ৳20k
                   </option>
                   <option
                     value="above20k"
                     className="bg-background text-foreground"
                   >
-                    Above ৳20,000
+                    &gt; ৳20k
                   </option>
                 </select>
               </div>
 
               {/* Search Action Button */}
-              <div className="flex items-center justify-center pt-1 md:pt-0">
+              <div className="flex items-center justify-center pt-1 sm:pt-0">
                 <Button
                   type="submit"
-                  className="w-full h-11 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold text-sm shadow-md shadow-indigo-600/20 gap-2"
+                  className="w-full h-10 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold text-xs shadow-md shadow-indigo-600/20 gap-1.5 cursor-pointer"
                 >
-                  <Search className="h-4 w-4" />
-                  Find Rooms
+                  <Search className="h-3.5 w-3.5" />
+                  Find
                 </Button>
               </div>
             </form>
 
             {/* Popular quick tags */}
-            <div className="flex flex-wrap items-center justify-center gap-2 mt-4 text-xs text-muted-foreground">
-              <span className="font-semibold text-foreground">Popular:</span>
+            <div className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
+              <span className="font-semibold text-foreground text-[11px]">
+                Popular:
+              </span>
               {[
-                "Single Room",
                 "Master Bedroom",
-                "Studio",
                 "Dhanmondi",
                 "Uttara",
                 "Mirpur",
+                "Studio",
+                "Bashundhara",
               ].map((tag) => (
                 <button
                   key={tag}
@@ -251,71 +256,76 @@ export function HomeHero() {
                     setSearchQuery(tag);
                     router.push(`/properties?q=${encodeURIComponent(tag)}`);
                   }}
-                  className="rounded-full bg-muted/60 border border-border/50 px-3 py-1 hover:bg-indigo-500/10 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer"
+                  className="rounded-full bg-muted/60 border border-border/50 px-2.5 py-0.5 text-[11px] hover:bg-indigo-500/10 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer"
                 >
                   {tag}
                 </button>
               ))}
             </div>
+
+            {/* Key Value Props Bar */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-border/50">
+              <div className="flex items-center gap-2">
+                <div className="h-7 w-7 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                  <ShieldCheck className="h-4 w-4" />
+                </div>
+                <div className="text-left">
+                  <p className="text-[11px] font-bold text-foreground leading-tight">
+                    Verified Owners
+                  </p>
+                  <p className="text-[9px] text-muted-foreground">
+                    100% Inspected
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="h-7 w-7 rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+                  <Zap className="h-4 w-4" />
+                </div>
+                <div className="text-left">
+                  <p className="text-[11px] font-bold text-foreground leading-tight">
+                    Instant Booking
+                  </p>
+                  <p className="text-[9px] text-muted-foreground">
+                    Stripe Checkout
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="h-7 w-7 rounded-lg bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0">
+                  <Users className="h-4 w-4" />
+                </div>
+                <div className="text-left">
+                  <p className="text-[11px] font-bold text-foreground leading-tight">
+                    Roommate Match
+                  </p>
+                  <p className="text-[9px] text-muted-foreground">
+                    Smart Compatibility
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="h-7 w-7 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="h-4 w-4" />
+                </div>
+                <div className="text-left">
+                  <p className="text-[11px] font-bold text-foreground leading-tight">
+                    Zero Broker Fee
+                  </p>
+                  <p className="text-[9px] text-muted-foreground">
+                    Direct Rental
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Key Value Props Bar */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full pt-8 border-t border-border/50 max-w-4xl">
-            <div className="flex items-center gap-3 justify-center sm:justify-start">
-              <div className="h-9 w-9 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
-                <ShieldCheck className="h-5 w-5" />
-              </div>
-              <div className="text-left">
-                <p className="text-xs font-bold text-foreground">
-                  Verified Owners
-                </p>
-                <p className="text-[10px] text-muted-foreground">
-                  100% Identity Checked
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3 justify-center sm:justify-start">
-              <div className="h-9 w-9 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
-                <Zap className="h-5 w-5" />
-              </div>
-              <div className="text-left">
-                <p className="text-xs font-bold text-foreground">
-                  Instant Booking
-                </p>
-                <p className="text-[10px] text-muted-foreground">
-                  Stripe Payment Gateway
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3 justify-center sm:justify-start">
-              <div className="h-9 w-9 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0">
-                <Users className="h-5 w-5" />
-              </div>
-              <div className="text-left">
-                <p className="text-xs font-bold text-foreground">
-                  Roommate Match
-                </p>
-                <p className="text-[10px] text-muted-foreground">
-                  Compatible Preferences
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3 justify-center sm:justify-start">
-              <div className="h-9 w-9 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
-                <CheckCircle2 className="h-5 w-5" />
-              </div>
-              <div className="text-left">
-                <p className="text-xs font-bold text-foreground">
-                  Zero Broker Fee
-                </p>
-                <p className="text-[10px] text-muted-foreground">
-                  Direct Owner Deal
-                </p>
-              </div>
-            </div>
+          {/* Right Column: 3D Isometric Architecture & Roommate Match Radar */}
+          <div className="lg:col-span-5 flex items-center justify-center">
+            <HomeHeroIsometric />
           </div>
         </div>
       </div>

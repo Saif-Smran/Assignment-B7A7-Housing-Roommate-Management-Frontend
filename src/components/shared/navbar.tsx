@@ -19,6 +19,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import * as React from "react";
 import { toast } from "react-toastify";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Button } from "@/components/ui/button";
 import type { User } from "@/interfaces";
 import {
@@ -122,6 +123,7 @@ export function Navbar() {
 
         {/* Action Buttons */}
         <div className="hidden md:flex items-center gap-2.5">
+          <ThemeToggle />
           {user ? (
             <div className="flex items-center gap-2">
               <div className="relative">
@@ -204,6 +206,7 @@ export function Navbar() {
 
         {/* Mobile Hamburger Toggle */}
         <div className="flex md:hidden items-center gap-2">
+          <ThemeToggle />
           <Button
             variant="ghost"
             size="icon"
@@ -246,6 +249,10 @@ export function Navbar() {
                 </Link>
               );
             })}
+
+            <div className="pt-2">
+              <ThemeToggle showLabel />
+            </div>
 
             <div className="pt-4 border-t border-border/60 flex flex-col gap-2">
               {user ? (

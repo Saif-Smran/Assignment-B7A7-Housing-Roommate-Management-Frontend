@@ -13,7 +13,12 @@ import {
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getProperties } from "@/api/properties.api";
+import { HomeCta } from "@/components/home/home-cta";
+import { HomeFaqSection } from "@/components/home/home-faq-section";
 import { HomeHero } from "@/components/home/home-hero";
+import { RoommateMatchSection } from "@/components/home/roommate-match-section";
+import { TestimonialsSection } from "@/components/home/testimonials-section";
+import { TopLocationsSection } from "@/components/home/top-locations-section";
 import { PropertyCard } from "@/components/room/property-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -33,10 +38,13 @@ export default async function HomePage() {
 
   return (
     <div className="flex flex-col w-full">
-      {/* 1. Hero Section */}
+      {/* 1. Hero Section (60-80% viewport height with dynamic Lottie animation) */}
       <HomeHero />
 
-      {/* 2. Featured Properties Section */}
+      {/* 2. Top Locations & Neighborhoods Section */}
+      <TopLocationsSection />
+
+      {/* 3. Featured Properties Section */}
       <section className="py-16 md:py-24 bg-muted/20 border-y border-border/40">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
@@ -101,7 +109,10 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 3. Stats Highlight Section */}
+      {/* 4. Intelligent Roommate Matching Showcase */}
+      <RoommateMatchSection />
+
+      {/* 5. Stats Highlight Section */}
       <section className="py-16 md:py-20 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
@@ -156,7 +167,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 4. How It Works Section */}
+      {/* 6. How It Works Section */}
       <section className="py-20 bg-muted/30 border-t border-border/40">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-3 max-w-2xl mx-auto mb-16">
@@ -324,7 +335,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 5. Core Platform Features */}
+      {/* 7. Core Platform Features */}
       <section className="py-20 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-3 max-w-2xl mx-auto mb-16">
@@ -399,53 +410,14 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 6. Call To Action (CTA) Banner */}
-      <section className="py-16 md:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-800 p-8 sm:p-12 md:p-16 text-white shadow-2xl">
-            {/* Background Glow */}
-            <div className="absolute top-0 right-0 -mt-12 -mr-12 h-64 w-64 rounded-full bg-white/10 blur-2xl pointer-events-none" />
+      {/* 8. Testimonials & Verified Stories Section */}
+      <TestimonialsSection />
 
-            <div className="relative z-10 max-w-3xl space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md px-3.5 py-1 text-xs font-semibold text-white/90">
-                <Sparkles className="h-3.5 w-3.5" />
-                <span>Ready to start your journey?</span>
-              </div>
+      {/* 9. Interactive Home FAQ Accordion Section */}
+      <HomeFaqSection />
 
-              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                Find Your Next Home or Rent Out Your Vacant Space Today
-              </h2>
-
-              <p className="text-sm sm:text-base text-white/80 leading-relaxed max-w-2xl">
-                Join hundreds of tenants and property owners who manage room
-                bookings, rent collections, and maintenance seamlessly.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                <Button
-                  asChild
-                  size="lg"
-                  className="rounded-2xl bg-white text-indigo-700 hover:bg-zinc-100 font-bold text-sm shadow-lg gap-2"
-                >
-                  <Link href="/properties">
-                    <Search className="h-4 w-4" />
-                    Browse Available Rooms
-                  </Link>
-                </Button>
-
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="rounded-2xl border-white/30 bg-white/10 text-white hover:bg-white/20 font-semibold text-sm backdrop-blur-md"
-                >
-                  <Link href="/login">Sign In </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 10. Call To Action (CTA) Banner with Lottie Celebration */}
+      <HomeCta />
     </div>
   );
 }

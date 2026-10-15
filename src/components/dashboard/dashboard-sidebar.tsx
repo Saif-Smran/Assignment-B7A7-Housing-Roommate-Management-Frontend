@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
 import {
   Sidebar,
   SidebarContent,
@@ -185,12 +185,15 @@ export function DashboardSidebar() {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="border-t border-sidebar-border p-4">
-        <div className="flex items-center gap-2 text-xs">
-          <Settings className="h-4 w-4 text-muted-foreground" />
-          <span className="truncate text-muted-foreground">
-            {user?.email || "Signed in"}
-          </span>
+      <SidebarFooter className="border-t border-sidebar-border p-3">
+        <div className="flex items-center justify-between gap-2 text-xs">
+          <div className="flex items-center gap-2 min-w-0">
+            <Settings className="h-4 w-4 shrink-0 text-muted-foreground" />
+            <span className="truncate text-muted-foreground">
+              {user?.email || "Signed in"}
+            </span>
+          </div>
+          <ThemeToggle />
         </div>
       </SidebarFooter>
     </Sidebar>
