@@ -1,26 +1,8 @@
 "use client";
 
-import {
-  Building2,
-  Check,
-  CheckCircle2,
-  Clock,
-  Heart,
-  KeyRound,
-  MapPin,
-  ShieldCheck,
-  Sparkles,
-  Users,
-  Zap,
-} from "lucide-react";
-import Link from "next/link";
-import * as React from "react";
+import { Clock, MapPin, ShieldCheck, Sparkles, Users, Zap } from "lucide-react";
 
 export function HomeHeroIsometric() {
-  const [activeNode, setActiveNode] = React.useState<"tenant" | "owner" | null>(
-    null,
-  );
-
   return (
     <div className="relative w-full max-w-[500px] lg:max-w-none aspect-square sm:aspect-[4/3] lg:aspect-square flex items-center justify-center select-none py-2">
       {/* Dynamic Ambient Background Glows */}
@@ -35,7 +17,12 @@ export function HomeHeroIsometric() {
           className="w-full h-full drop-shadow-[0_20px_45px_rgba(79,70,229,0.22)]"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-labelledby="hero-iso-title"
         >
+          <title id="hero-iso-title">
+            UrbanMatch 3D Isometric Apartment and Roommate Match Radar
+          </title>
           <defs>
             {/* Gradients for Isometric Faces */}
             <linearGradient id="isoTopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -276,7 +263,7 @@ export function HomeHeroIsometric() {
         {/* ======================================================== */}
 
         {/* Badge 1: Verified Master Bedroom (Top-Left) */}
-        <div className="absolute -top-2 -left-2 sm:-left-6 z-20 rounded-2xl border border-white/20 dark:border-white/10 bg-background/90 dark:bg-card/90 p-3 shadow-xl backdrop-blur-xl animate-float-slow hover:scale-105 transition-transform pointer-events-auto max-w-[210px]">
+        <div className="absolute -top-2 -left-2 sm:-left-6 z-20 rounded-2xl border border-border/80 bg-card/95 p-3 shadow-xl backdrop-blur-xl animate-float-slow hover:scale-105 transition-transform pointer-events-auto max-w-[210px]">
           <div className="flex items-center gap-2.5">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 shrink-0">
               <ShieldCheck className="h-5 w-5" />
@@ -297,7 +284,7 @@ export function HomeHeroIsometric() {
         </div>
 
         {/* Badge 2: Roommate Compatibility Radar (Bottom-Right) */}
-        <div className="absolute -bottom-3 -right-2 sm:-right-6 z-20 rounded-2xl border border-white/20 dark:border-white/10 bg-background/90 dark:bg-card/90 p-3 shadow-xl backdrop-blur-xl animate-float-reverse hover:scale-105 transition-transform pointer-events-auto max-w-[220px]">
+        <div className="absolute -bottom-3 -right-2 sm:-right-6 z-20 rounded-2xl border border-border/80 bg-card/95 p-3 shadow-xl backdrop-blur-xl animate-float-reverse hover:scale-105 transition-transform pointer-events-auto max-w-[220px]">
           <div className="flex items-center gap-2.5">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-500/15 text-purple-600 dark:text-purple-400 shrink-0">
               <Users className="h-5 w-5" />
@@ -317,7 +304,7 @@ export function HomeHeroIsometric() {
         </div>
 
         {/* Badge 3: Instant Booking / Stripe Security (Top-Right) */}
-        <div className="absolute top-1/4 -right-2 sm:-right-4 z-20 hidden sm:flex items-center gap-2 rounded-2xl border border-white/20 dark:border-white/10 bg-background/90 dark:bg-card/90 px-3 py-2 shadow-lg backdrop-blur-xl animate-float-slow hover:scale-105 transition-transform">
+        <div className="absolute top-1/4 -right-2 sm:-right-4 z-20 hidden sm:flex items-center gap-2 rounded-2xl border border-border/80 bg-card/95 px-3 py-2 shadow-lg backdrop-blur-xl animate-float-slow hover:scale-105 transition-transform">
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400">
             <Zap className="h-4 w-4" />
           </div>
@@ -330,7 +317,7 @@ export function HomeHeroIsometric() {
         </div>
 
         {/* Badge 4: Live Activity Ticker (Bottom-Left) */}
-        <div className="absolute bottom-6 -left-3 sm:-left-4 z-20 hidden sm:flex items-center gap-2 rounded-full border border-white/20 dark:border-white/10 bg-background/90 dark:bg-card/90 px-3 py-1 shadow-md backdrop-blur-md text-[10px] text-muted-foreground">
+        <div className="absolute bottom-6 -left-3 sm:-left-4 z-20 hidden sm:flex items-center gap-2 rounded-full border border-border/80 bg-card/95 px-3 py-1 shadow-md backdrop-blur-md text-[10px] text-muted-foreground">
           <Clock className="h-3 w-3 text-emerald-500" />
           <span>Viewing scheduled 2m ago</span>
         </div>

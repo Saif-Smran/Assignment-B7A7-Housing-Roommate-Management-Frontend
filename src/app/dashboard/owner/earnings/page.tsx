@@ -1,9 +1,7 @@
 "use client";
 
 import { Banknote } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
-import { toast } from "react-toastify";
-import { getOwnerEarnings } from "@/api/payments.api";
+import { useMemo } from "react";
 import {
   OwnerEmpty,
   OwnerPageHeader,
@@ -12,7 +10,6 @@ import {
 } from "@/components/owner/owner-ui";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useOwnerEarningsQuery } from "@/hooks/useQueries";
-import type { Payment } from "@/interfaces";
 
 export default function OwnerEarningsPage() {
   const { data, isLoading: loading } = useOwnerEarningsQuery();

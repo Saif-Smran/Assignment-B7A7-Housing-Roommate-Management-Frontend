@@ -8,14 +8,16 @@ import {
   Hammer,
   HandCoins,
   LayoutDashboard,
-  Settings,
+  LogOut,
   ShieldCheck,
   UserCircle,
   Users,
 } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
+import { Button } from "@/components/ui/button";
 import {
   Sidebar,
   SidebarContent,
@@ -28,6 +30,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import type { Role } from "@/interfaces";
+import { useAuth } from "@/providers/auth.provider";
 
 const roleLabels: Record<Role, string> = {
   ADMIN: "Administrator",
@@ -101,12 +104,17 @@ const linksByRole: Record<
   ],
 };
 
-import { useAuth } from "@/providers/auth.provider";
-
 export function DashboardSidebar() {
   const pathname = usePathname();
-  const { user, role: authRole } = useAuth();
+  const router = useRouter();
+  const { user, role: authRole, logout } = useAuth();
   const role: Role = (authRole || user?.role || "TENANT") as Role;
+
+  const handleLogout = () => {
+    logout();
+    toast.success("You have been logged out.");
+    router.push("/");
+  };
 
   return (
     <Sidebar>
@@ -182,19 +190,38 @@ export function DashboardSidebar() {
                 <span>Browse rooms</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                onClick={handleLogout}
+                tooltip="Log out"
+                className="text-destructive hover:bg-destructive/10 hover:text-destructive focus-visible:ring-destructive/20 cursor-pointer"
+              >
+                <LogOut />
+                <span>Log out</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="border-t border-sidebar-border p-3">
+      <SidebarFooter className="border-t border-sidebar-border p-3 space-y-2">
         <div className="flex items-center justify-between gap-2 text-xs">
           <div className="flex items-center gap-2 min-w-0">
-            <Settings className="h-4 w-4 shrink-0 text-muted-foreground" />
-            <span className="truncate text-muted-foreground">
+            <UserCircle className="h-4 w-4 shrink-0 text-muted-foreground" />
+            <span className="truncate text-muted-foreground font-medium">
               {user?.email || "Signed in"}
             </span>
           </div>
           <ThemeToggle />
         </div>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleLogout}
+          className="w-full justify-center gap-2 rounded-lg text-xs font-semibold text-destructive hover:bg-destructive/10 hover:text-destructive border-border/80 h-8 cursor-pointer"
+        >
+          <LogOut className="h-3.5 w-3.5" />
+          <span>Log out</span>
+        </Button>
       </SidebarFooter>
     </Sidebar>
   );

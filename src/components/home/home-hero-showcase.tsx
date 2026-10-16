@@ -5,8 +5,6 @@ import {
   Bed,
   CheckCircle2,
   ChevronRight,
-  Clock,
-  Heart,
   MapPin,
   ShieldCheck,
   Sparkles,
@@ -18,7 +16,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
-import { Badge } from "@/components/ui/badge";
 
 const ROOM_SHOWCASES = [
   {

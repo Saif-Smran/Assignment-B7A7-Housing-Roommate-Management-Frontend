@@ -2,7 +2,6 @@
 
 import { Lottie } from "lottie-react";
 import {
-  ArrowRight,
   CheckCircle2,
   KeyRound,
   PlusCircle,

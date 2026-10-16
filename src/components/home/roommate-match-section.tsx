@@ -7,8 +7,6 @@ import {
   Search,
   ShieldCheck,
   Sparkles,
-  Sun,
-  UserCheck,
   Users2,
   Zap,
 } from "lucide-react";

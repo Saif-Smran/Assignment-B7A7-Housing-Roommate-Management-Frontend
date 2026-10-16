@@ -3,8 +3,6 @@
 import { Lottie } from "lottie-react";
 import {
   Building2,
-  CheckCircle2,
-  Home,
   MapPin,
   ShieldCheck,
   Sparkles,

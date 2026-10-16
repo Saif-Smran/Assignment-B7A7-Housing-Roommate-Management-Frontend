@@ -4,7 +4,6 @@ import {
   Compass,
   CreditCard,
   KeyRound,
-  Search,
   ShieldCheck,
   Sparkles,
   Users2,

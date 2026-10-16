@@ -65,8 +65,11 @@ export function TestimonialsSection() {
                 {/* Rating & Quote Icon */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1 text-amber-500">
-                    {[...Array(t.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-amber-500" />
+                    {Array.from(
+                      { length: t.rating },
+                      (_, i) => `${t.name}-star-${i + 1}`,
+                    ).map((starId) => (
+                      <Star key={starId} className="h-4 w-4 fill-amber-500" />
                     ))}
                   </div>
                   <Quote className="h-6 w-6 text-muted-foreground/30" />

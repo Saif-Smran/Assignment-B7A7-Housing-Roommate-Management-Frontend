@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAdminPropertiesQuery } from "@/hooks/useQueries";
-import type { PropertyDetails } from "@/interfaces";
 
 export default function AdminPropertiesPage() {
   const queryClient = useQueryClient();
