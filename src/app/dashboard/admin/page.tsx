@@ -13,6 +13,10 @@ import {
   Users,
 } from "lucide-react";
 import Link from "next/link";
+import {
+  AdminRevenueBarChart,
+  AdminUserRoleDonutChart,
+} from "@/components/dashboard/dashboard-charts";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -237,6 +241,34 @@ export default function AdminOverviewPage() {
             <p className="text-[11px] text-muted-foreground">
               {approvedApplications} Approved · {pendingApplications} Pending
             </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-sm">
+              Revenue and transaction trend
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <AdminRevenueBarChart
+              totalRevenue={totalRevenue}
+              completedTransactions={stats?.payments?.completedCount ?? 0}
+            />
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-sm">User role distribution</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <AdminUserRoleDonutChart
+              tenants={stats?.users?.tenants ?? 0}
+              owners={stats?.users?.owners ?? 0}
+              admins={stats?.users?.admins ?? 0}
+            />
           </CardContent>
         </Card>
       </div>

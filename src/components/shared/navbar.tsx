@@ -9,6 +9,7 @@ import {
   LayoutDashboard,
   LogIn,
   LogOut,
+  Mail,
   Menu,
   Search,
   UserCircle,
@@ -59,13 +60,25 @@ export function Navbar() {
     router.push("/");
   };
 
-  const navLinks = [
+  const publicNavLinks = [
     { href: "/", label: "Home", icon: Home },
     { href: "/properties", label: "Browse Rooms", icon: Search },
     { href: "/about", label: "About Us", icon: Info },
-    // { href: "/contact", label: "Contact", icon: PhoneCall },
+    { href: "/contact", label: "Contact", icon: Mail },
     { href: "/faq", label: "FAQ", icon: HelpCircle },
   ];
+
+  const mobileNavLinks = user
+    ? [
+        ...publicNavLinks,
+        {
+          href: getDashboardPath(user.role),
+          label: "Dashboard",
+          icon: LayoutDashboard,
+        },
+        { href: "/dashboard/profile", label: "Profile", icon: UserCircle },
+      ]
+    : publicNavLinks;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 transition-all">
@@ -96,7 +109,7 @@ export function Navbar() {
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-1 rounded-full border border-border/50 bg-muted/40 p-1.5 backdrop-blur-md">
-          {navLinks.map((link) => {
+          {publicNavLinks.map((link) => {
             const Icon = link.icon;
             const isActive =
               pathname === link.href ||
@@ -230,7 +243,7 @@ export function Navbar() {
             <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground px-3 py-1">
               Navigation
             </p>
-            {navLinks.map((link) => {
+            {mobileNavLinks.map((link) => {
               const Icon = link.icon;
               const isActive = pathname === link.href;
               return (
@@ -263,22 +276,6 @@ export function Navbar() {
                       {user.fullName || user.email || "Signed in"}
                     </span>
                   </div>
-                  <Link
-                    href={getDashboardPath(user.role)}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium hover:bg-muted"
-                  >
-                    <LayoutDashboard className="h-4 w-4 text-indigo-600" />
-                    Dashboard
-                  </Link>
-                  <Link
-                    href="/dashboard/profile"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium hover:bg-muted"
-                  >
-                    <UserCircle className="h-4 w-4 text-indigo-600" />
-                    My profile
-                  </Link>
                   <Button
                     type="button"
                     variant="outline"

@@ -2,12 +2,8 @@ import {
   ArrowRight,
   Building2,
   Compass,
-  CreditCard,
   KeyRound,
-  ShieldCheck,
   Sparkles,
-  Users2,
-  Wrench,
 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -15,13 +11,12 @@ import { getProperties } from "@/api/properties.api";
 import { HomeCta } from "@/components/home/home-cta";
 import { HomeFaqSection } from "@/components/home/home-faq-section";
 import { HomeHero } from "@/components/home/home-hero";
-import { RoommateMatchSection } from "@/components/home/roommate-match-section";
+import { PlatformFeaturesSection } from "@/components/home/platform-features-section";
 import { TestimonialsSection } from "@/components/home/testimonials-section";
 import { TopLocationsSection } from "@/components/home/top-locations-section";
 import { PropertyCard } from "@/components/room/property-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import type { PropertyDetails } from "@/interfaces";
 
 export const metadata: Metadata = {
@@ -108,8 +103,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 4. Intelligent Roommate Matching Showcase */}
-      <RoommateMatchSection />
+      {/* 4. Core Platform Features */}
+      <PlatformFeaturesSection />
 
       {/* 5. Stats Highlight Section */}
       <section className="py-16 md:py-20 bg-background">
@@ -334,88 +329,13 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 7. Core Platform Features */}
-      <section className="py-20 bg-background">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-3 max-w-2xl mx-auto mb-16">
-            <Badge
-              variant="outline"
-              className="text-xs px-3 py-1 font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 border-indigo-500/30"
-            >
-              Why Choose UrbanMatch
-            </Badge>
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
-              Everything You Need for Peace of Mind
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              Built specifically to eliminate rental hassles, protect your
-              money, and connect genuine roommates.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="rounded-3xl border border-border/60 bg-card p-6 space-y-3 hover:border-indigo-500/40 hover:shadow-lg transition-all">
-              <div className="h-10 w-10 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
-                <ShieldCheck className="h-5 w-5" />
-              </div>
-              <h3 className="font-heading font-bold text-base text-foreground">
-                Verified Landlords & Rooms
-              </h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                All property owners and listings are verified to prevent scams,
-                fake photos, and unauthorized brokerages.
-              </p>
-            </Card>
-
-            <Card className="rounded-3xl border border-border/60 bg-card p-6 space-y-3 hover:border-indigo-500/40 hover:shadow-lg transition-all">
-              <div className="h-10 w-10 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
-                <CreditCard className="h-5 w-5" />
-              </div>
-              <h3 className="font-heading font-bold text-base text-foreground">
-                Stripe Payment Gateway
-              </h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Pay rent, security deposit, and utilities with full card
-                security, automated digital invoices, and receipts.
-              </p>
-            </Card>
-
-            <Card className="rounded-3xl border border-border/60 bg-card p-6 space-y-3 hover:border-indigo-500/40 hover:shadow-lg transition-all">
-              <div className="h-10 w-10 rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center">
-                <Users2 className="h-5 w-5" />
-              </div>
-              <h3 className="font-heading font-bold text-base text-foreground">
-                Roommate Preferences
-              </h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Match with compatible flatmates based on lifestyle, budget,
-                capacity, and clean living expectations.
-              </p>
-            </Card>
-
-            <Card className="rounded-3xl border border-border/60 bg-card p-6 space-y-3 hover:border-indigo-500/40 hover:shadow-lg transition-all">
-              <div className="h-10 w-10 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center">
-                <Wrench className="h-5 w-5" />
-              </div>
-              <h3 className="font-heading font-bold text-base text-foreground">
-                Digital Maintenance Tickets
-              </h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Submit repairs and plumbing issues right from your dashboard and
-                track technician resolution progress in real time.
-              </p>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Testimonials & Verified Stories Section */}
+      {/* 5. Testimonials & Verified Stories Section */}
       <TestimonialsSection />
 
-      {/* 9. Interactive Home FAQ Accordion Section */}
+      {/* 6. Interactive Home FAQ Accordion Section */}
       <HomeFaqSection />
 
-      {/* 10. Call To Action (CTA) Banner with Lottie Celebration */}
+      {/* 7. Call To Action (CTA) Banner with Lottie Celebration */}
       <HomeCta />
     </div>
   );

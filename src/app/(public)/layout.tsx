@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { AiAssistantWidget } from "@/components/shared/ai-assistant-widget";
 import { Footer } from "@/components/shared/footer";
 import { Navbar } from "@/components/shared/navbar";
 
@@ -8,6 +9,7 @@ export default function PublicLayout({ children }: { children: ReactNode }) {
       <Navbar />
       <main className="flex-1 w-full">{children}</main>
       <Footer />
+      <AiAssistantWidget />
     </div>
   );
 }

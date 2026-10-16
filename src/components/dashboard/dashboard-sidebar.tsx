@@ -9,6 +9,7 @@ import {
   HandCoins,
   LayoutDashboard,
   LogOut,
+  Settings,
   ShieldCheck,
   UserCircle,
   Users,
@@ -49,6 +50,21 @@ const linksByRole: Record<
       href: "/dashboard/admin/properties",
       label: "Properties",
       icon: Building2,
+    },
+    {
+      href: "/dashboard/admin/applications",
+      label: "Applications",
+      icon: ClipboardList,
+    },
+    {
+      href: "/dashboard/admin/payments",
+      label: "Payments",
+      icon: CreditCard,
+    },
+    {
+      href: "/dashboard/admin/settings",
+      label: "Settings",
+      icon: Settings,
     },
   ],
   OWNER: [

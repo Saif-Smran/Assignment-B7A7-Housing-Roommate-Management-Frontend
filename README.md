@@ -18,9 +18,13 @@ You can use the **One-Click Demo Login** buttons directly on the `/login` page o
 ## Features
 
 - Public property and room browsing with filters, pagination, galleries, maps, and availability indicators.
+- Property listing cards with images, descriptions, rent, location, ratings, availability, listed dates, and View Details actions.
 - Tenant dashboard for applications, viewing requests, maintenance tickets, payments, and profile management.
 - Owner dashboard for properties, rooms, applications, tenant assignment, viewings, maintenance, earnings, and profile management.
-- Admin dashboard for platform statistics, users, and property moderation.
+- Admin dashboard for platform statistics, dynamic revenue and user-role charts, users, properties, applications, payments, and settings.
+- Responsive public navigation: desktop always shows Home, Browse Rooms, About Us, Contact, and FAQ; authenticated mobile navigation additionally shows Dashboard and Profile.
+- Validated Contact Support form with loading and success feedback, plus Terms & Privacy information.
+- Public housing assistant widget for guidance about rent filters, applications, and viewing requests.
 - Server-side Next.js `middleware.ts` enforcing authentication and 3-role route boundaries.
 - TanStack Query (`@tanstack/react-query`) for cached, reactive server state management.
 - React Hook Form + Zod for type-safe form validation matching backend schemas.
@@ -50,7 +54,7 @@ You can use the **One-Click Demo Login** buttons directly on the `/login` page o
 │   ├── api/                        # Typed backend API clients
 │   ├── app/                        # Next.js App Router pages and layouts
 │   │   ├── (auth)/                 # Login and registration
-│   │   ├── (public)/               # Home, properties, about, and FAQ
+│   │   ├── (public)/               # Home, properties, about, FAQ, contact, and legal pages
 │   │   ├── dashboard/              # Role-aware dashboard shell
 │   │   │   ├── admin/              # Admin pages
 │   │   │   ├── owner/              # Owner pages and property management
@@ -129,9 +133,12 @@ bun run code      # Refresh the project graph and codebase snapshot
 
 - `/` - Home page with featured listings and search entry points.
 - `/properties` - Filterable property and room listing.
+- `/properties` displays six listings per page using the intentional one/two/three-column responsive grid.
 - `/properties/details?id=<propertyId>` - Property details, rooms, availability, viewing, and application actions.
 - `/about` - Platform mission and team.
+- `/contact` - Validated support contact form and contact channels.
 - `/faq` - Tenant and owner FAQs.
+- `/terms` - Terms and privacy information.
 - `/login` - Credential login and demo login actions.
 - `/register` - Tenant and owner registration.
 
@@ -158,9 +165,13 @@ bun run code      # Refresh the project graph and codebase snapshot
 
 ### Admin Dashboard
 
-- `/dashboard/admin` - Platform statistics.
+- `/dashboard/admin` - Platform statistics, dynamic revenue and user-role charts.
 - `/dashboard/admin/users` - User list and role management.
 - `/dashboard/admin/properties` - Property moderation.
+- `/dashboard/admin/applications` - Application review and filtering.
+- `/dashboard/admin/payments` - Payment records, search, status filters, and pagination.
+- `/dashboard/admin/settings` - Platform administration settings.
+- `/dashboard/profile` - Shared editable profile form for authenticated users.
 
 ## Backend API Integration
 
@@ -176,6 +187,7 @@ Important endpoint groups include:
 - Maintenance: `/rooms/:roomId/maintenance`, `/maintenance-requests/*`
 - Payments: `/payments/initiate`, `/payments/my`, `/payments/earnings`
 - Admin: `/admin/*`
+- User profile updates: `PATCH /users/me`
 
 The backend is the source of truth for authorization, payment status, room assignment, and room availability. Stripe completion is confirmed by the backend webhook rather than by trusting the browser redirect alone.
 

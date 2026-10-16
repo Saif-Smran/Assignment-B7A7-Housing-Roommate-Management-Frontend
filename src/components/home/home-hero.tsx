@@ -45,7 +45,7 @@ export function HomeHero() {
   };
 
   return (
-    <section className="relative overflow-hidden min-h-[60vh] lg:h-[75vh] lg:min-h-[600px] lg:max-h-[760px] flex items-center justify-center bg-gradient-to-b from-indigo-50/50 via-background to-background dark:from-indigo-950/20 py-8 lg:py-0">
+    <section className="relative overflow-hidden min-h-[55vh] lg:h-[65vh] lg:min-h-[560px] lg:max-h-[680px] flex items-center justify-center bg-gradient-to-b from-indigo-50/50 via-background to-background dark:from-indigo-950/20 py-8 lg:py-0">
       {/* Decorative Glow Elements */}
       <div className="absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] bg-gradient-to-tr from-indigo-500/15 to-purple-500/15 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-10 right-1/4 w-[400px] h-[300px] bg-gradient-to-bl from-pink-500/10 to-indigo-500/10 blur-[100px] rounded-full pointer-events-none" />

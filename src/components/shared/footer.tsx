@@ -1,19 +1,44 @@
+"use client";
+
 import {
   ArrowRight,
   Building2,
+  Check,
   Code2,
   Globe,
   Heart,
+  Loader2,
   Mail,
   MapPin,
   ShieldCheck,
   Zap,
 } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
+import { toast } from "react-toastify";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export function Footer() {
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !email.includes("@")) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSubscribed(true);
+      toast.success("Thank you for subscribing to UrbanMatch alerts!");
+      setEmail("");
+    }, 600);
+  };
+
   return (
     <footer className="w-full border-t border-border/50 bg-muted/30 pt-16 pb-8 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -112,7 +137,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link
-                  href="/dashboard"
+                  href="/dashboard/tenant"
                   className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
                   Tenant Portal
@@ -120,7 +145,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/owner"
+                  href="/dashboard/owner"
                   className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
                   Property Owner Portal
@@ -128,7 +153,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/admin"
+                  href="/dashboard/admin"
                   className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
                   Admin Analytics
@@ -162,24 +187,37 @@ export function Footer() {
               Subscribe for new property listings and roommate matching alerts
               in Dhaka & major cities.
             </p>
-            <div className="flex flex-col gap-2">
+            <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
               <div className="flex gap-1.5">
                 <Input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   className="h-9 text-xs rounded-xl bg-background border-border"
+                  disabled={loading || subscribed}
                 />
                 <Button
+                  type="submit"
                   size="sm"
+                  disabled={loading || subscribed}
                   className="h-9 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shrink-0"
                 >
-                  <ArrowRight className="h-4 w-4" />
+                  {loading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : subscribed ? (
+                    <Check className="h-4 w-4 text-emerald-400" />
+                  ) : (
+                    <ArrowRight className="h-4 w-4" />
+                  )}
                 </Button>
               </div>
               <span className="text-[10px] text-muted-foreground">
-                No spam ever. Unsubscribe at any time.
+                {subscribed
+                  ? "Subscribed! You will receive weekly rental highlights."
+                  : "No spam ever. Unsubscribe at any time."}
               </span>
-            </div>
+            </form>
 
             <div className="pt-2 space-y-1 text-xs text-muted-foreground">
               <div className="flex items-center gap-2">
@@ -205,7 +243,7 @@ export function Footer() {
 
           <div className="flex items-center gap-4">
             <Link
-              href="/faq"
+              href="/terms"
               className="hover:text-foreground transition-colors"
             >
               Terms & Privacy
