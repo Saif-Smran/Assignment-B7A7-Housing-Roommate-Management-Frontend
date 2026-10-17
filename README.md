@@ -24,7 +24,7 @@ You can use the **One-Click Demo Login** buttons directly on the `/login` page o
 - Admin dashboard for platform statistics, dynamic revenue and user-role charts, users, properties, applications, payments, and settings.
 - Responsive public navigation: desktop always shows Home, Browse Rooms, About Us, Contact, and FAQ; authenticated mobile navigation additionally shows Dashboard and Profile.
 - Validated Contact Support form with loading and success feedback, plus Terms & Privacy information.
-- Public housing assistant widget for guidance about rent filters, applications, and viewing requests.
+- AI housing assistant available throughout the application for questions about listings, roommates, platform features, and the rental experience in Bangladesh.
 - Server-side Next.js `middleware.ts` enforcing authentication and 3-role route boundaries.
 - TanStack Query (`@tanstack/react-query`) for cached, reactive server state management.
 - React Hook Form + Zod for type-safe form validation matching backend schemas.
@@ -37,6 +37,7 @@ You can use the **One-Click Demo Login** buttons directly on the `/login` page o
 
 - Next.js 16 App Router (Server Components + Client Components)
 - React 19 and TypeScript
+- Google Gemini via `@google/genai`
 - Tailwind CSS 4
 - TanStack Query
 - React Hook Form + Zod
@@ -59,7 +60,7 @@ You can use the **One-Click Demo Login** buttons directly on the `/login` page o
 │   │   │   ├── admin/              # Admin pages
 │   │   │   ├── owner/              # Owner pages and property management
 │   │   │   └── tenant/             # Tenant pages and workflows
-│   │   ├── api/                    # Next.js route handlers
+│   │   ├── api/                    # Next.js route handlers, including the AI chat endpoint
 │   │   ├── icon.svg                # UrbanMatch favicon
 │   │   ├── layout.tsx              # Root metadata, fonts, and providers
 │   │   └── globals.css             # Global styles and design tokens
@@ -106,7 +107,15 @@ TESTER_TENANT_PASSWORD=testertenant@1234
 
 NEXT_PUBLIC_GOOGLE_CLIENT_ID=
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
+
+# Server-only Gemini configuration for the UrbanMatch AI assistant
+GEMINI_API_KEY=
+# Optional; defaults to gemini-3.8-flash
+GEMINI_MODEL=gemini-3.8-flash
 ```
+
+`GEMINI_API_KEY` must never use the `NEXT_PUBLIC_` prefix. It is read only by
+the server-side `/api/chat` route and must not be exposed to browser code.
 
 Start the development server:
 
@@ -141,6 +150,30 @@ bun run code      # Refresh the project graph and codebase snapshot
 - `/terms` - Terms and privacy information.
 - `/login` - Credential login and demo login actions.
 - `/register` - Tenant and owner registration.
+
+### AI Assistant
+
+- The floating UrbanMatch Assistant is mounted in the root layout and is
+  available on every page.
+- `POST /api/chat` accepts a JSON body with the latest user message:
+
+  ```json
+  {
+    "messages": [
+      { "role": "user", "content": "How can I find a room in Dhaka?" }
+    ]
+  }
+  ```
+
+- The endpoint validates the message, sends it to Gemini using the configured
+  server-side model, and returns:
+
+  ```json
+  { "reply": "..." }
+  ```
+
+- Assistant responses support readable headings, bold text, paragraphs, bullet
+  points, and numbered lists in the chat widget.
 
 ### Tenant Dashboard
 
@@ -204,6 +237,8 @@ Required production configuration includes:
 
 - `NEXT_PUBLIC_API_BASE_URL` pointing to the deployed backend `/api` base URL.
 - `NEXT_PUBLIC_APP_URL` set to the deployed frontend origin.
+- `GEMINI_API_KEY` for the server-side UrbanMatch AI assistant.
+- Optional `GEMINI_MODEL` to override the default `gemini-3.8-flash` model.
 - Demo account credentials used by the login shortcuts.
 - Google and Cloudinary variables when those integrations are enabled.
 
