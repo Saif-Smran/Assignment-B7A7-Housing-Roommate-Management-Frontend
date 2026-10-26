@@ -5,6 +5,8 @@
 
 UrbanMatch is a Next.js housing and roommate management platform for tenants, property owners, and administrators. It connects verified property listings with room applications, viewing requests, maintenance tracking, and Stripe Checkout payments.
 
+This repository contains the frontend for the B7A6 Housing & Roommate Management Platform. The backend is maintained separately at [Assignment-B7A6-Housing-Roommate-Management-backend](https://github.com/Saif-Smran/Assignment-B7A6-Housing-Roommate-Management-backend).
+
 ## Demo Evaluation Credentials
 
 You can use the **One-Click Demo Login** buttons directly on the `/login` page or use the credentials below:
@@ -81,8 +83,9 @@ You can use the **One-Click Demo Login** buttons directly on the `/login` page o
 ## Requirements
 
 - Bun 1.4 or newer
-- A running or deployed B7A6 backend API
+- Access to a running or deployed B7A6 backend API
 - Backend authentication and demo accounts configured for the selected environment
+- A Gemini API key only if the AI assistant is enabled locally or in the deployment
 
 ## Getting Started
 
@@ -92,7 +95,9 @@ Install dependencies:
 bun install
 ```
 
-Create a `.env` file in the project root. Do not commit secrets.
+Create a `.env.local` file in the project root. Do not commit secrets. The API client
+uses the deployed B7A6 API as a fallback when `NEXT_PUBLIC_API_BASE_URL` is not set,
+so the variable can be omitted when using the default backend.
 
 ```env
 NEXT_PUBLIC_API_BASE_URL=https://your-backend.example.com/api
@@ -108,14 +113,16 @@ TESTER_TENANT_PASSWORD=testertenant@1234
 NEXT_PUBLIC_GOOGLE_CLIENT_ID=
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
 
-# Server-only Gemini configuration for the UrbanMatch AI assistant
+# Server-only Gemini configuration for the UrbanMatch AI assistant (optional)
 GEMINI_API_KEY=
-# Optional; defaults to gemini-3.8-flash
+# Optional; defaults to gemini-3.8-flash when GEMINI_API_KEY is configured
 GEMINI_MODEL=gemini-3.8-flash
 ```
 
 `GEMINI_API_KEY` must never use the `NEXT_PUBLIC_` prefix. It is read only by
-the server-side `/api/chat` route and must not be exposed to browser code.
+the server-side `/api/chat` route and must not be exposed to browser code. Google
+and Cloudinary variables are also optional and are only needed when those
+integrations are enabled.
 
 Start the development server:
 
@@ -210,6 +217,10 @@ bun run code      # Refresh the project graph and codebase snapshot
 
 The frontend client follows the B7A6 backend/Postman API contracts. Requests are made through `src/api/client.ts`, which attaches the stored bearer token and normalizes list responses where required.
 
+When deploying against a different backend, set `NEXT_PUBLIC_API_BASE_URL` to
+that backend's `/api` base URL and configure the backend's `FRONTEND_URL` and CORS
+allowlist to include the deployed frontend origin.
+
 Important endpoint groups include:
 
 - Authentication: `/auth/*`
@@ -237,7 +248,8 @@ Required production configuration includes:
 
 - `NEXT_PUBLIC_API_BASE_URL` pointing to the deployed backend `/api` base URL.
 - `NEXT_PUBLIC_APP_URL` set to the deployed frontend origin.
-- `GEMINI_API_KEY` for the server-side UrbanMatch AI assistant.
+- `GEMINI_API_KEY` for the server-side UrbanMatch AI assistant, when that feature
+  is enabled.
 - Optional `GEMINI_MODEL` to override the default `gemini-3.8-flash` model.
 - Demo account credentials used by the login shortcuts.
 - Google and Cloudinary variables when those integrations are enabled.
